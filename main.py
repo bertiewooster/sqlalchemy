@@ -57,3 +57,10 @@ with engine.connect() as conn:
     for row in result:
         print(f"x: {row.x} y: {row.y}")
 
+# Sending Multiple Parameters
+with engine.connect() as conn:
+    conn.execute(
+        text("INSERT INTO some_table (x, y) VALUES (:x, :y)"),
+        [{"x": 11, "y": 12}, {"x": 13, "y": 14}],
+    )
+    conn.commit()
