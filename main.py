@@ -41,6 +41,13 @@ with engine.connect() as conn:
     #     print(x, y)
 
     # Access data by attribute name
-    for row in result:
-        y = row.y
-        print(f"Row: {row.x} {y}")
+    # for row in result:
+    #     y = row.y
+    #     print(f"Row: {row.x} {y}")
+
+    # Put data into dictionary aka mapping access
+    for dict_row in result.mappings():
+        x = dict_row["x"]
+        y = dict_row["y"]
+        print(x, y)
+
