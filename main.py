@@ -29,7 +29,18 @@ with engine.begin() as conn:
         [{"x": 6, "y": 8}, {"x": 9, "y": 10}],
     )
 
+# Read and print data from rows
 with engine.connect() as conn:
     result = conn.execute(text("SELECT x, y FROM some_table"))
+    # for row in result:
+    #     print(f"x: {row.x} y: {row.y}")
+
+    # Access data in Pythonic style: as tuples
+    # print("x", "y")
+    # for x, y in result:
+    #     print(x, y)
+
+    # Access data by attribute name
     for row in result:
-        print(f"x: {row.x} y: {row.y}")
+        y = row.y
+        print(f"Row: {row.x} {y}")
