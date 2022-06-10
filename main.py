@@ -64,3 +64,10 @@ with engine.connect() as conn:
         [{"x": 11, "y": 12}, {"x": 13, "y": 14}],
     )
     conn.commit()
+
+# Bundling Parameters with a Statement
+stmt = text("SELECT x, y FROM some_table WHERE y > :y ORDER BY x, y").bindparams(y=6)
+with engine.connect() as conn:
+    result = conn.execute(stmt)
+    for row in result:
+        print(f"Bundling Parameters with a Statement x: {row.x} y: {row.y}")
